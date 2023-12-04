@@ -12,6 +12,8 @@ const jwt = require('jsonwebtoken')
 const passport = require("passport")
 const passportJWT = require("passport-jwt")
 const app = express()
+const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs");
 const HTTP_PORT = process.env.PORT || 3000
 
 // JSON Web Token Setup
@@ -91,7 +93,7 @@ const connectDB = async () => {
     process.exit(1);
   }
 }
-connectDB.then(()=>{
+connectDB().then(()=>{
   app.listen(HTTP_PORT, ()=>{
       console.log("API listening on: " + HTTP_PORT);
   });
