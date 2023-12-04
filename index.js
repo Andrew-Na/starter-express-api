@@ -91,7 +91,7 @@ const connectDB = async () => {
     process.exit(1);
   }
 }
-connectDB.connect().then(()=>{
+connectDB.then(()=>{
   app.listen(HTTP_PORT, ()=>{
       console.log("API listening on: " + HTTP_PORT);
   });
