@@ -50,3 +50,9 @@ app.use(express.json());
 app.get("/api/", (req, res) => {
    res.json({ "message": "login successful"});
 });
+
+userService.connect().then(()=>{
+    app.listen(HTTP_PORT, ()=>{
+        console.log("API listening on: " + HTTP_PORT);
+    });
+}).catch(err=>console.log(err))
