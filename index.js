@@ -82,7 +82,16 @@ app.use((req, res) => {
   res.status(404).end();
 });
 
-userService.connect().then(()=>{
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect('mongodb+srv://asequeira:akCuxsZzGn0DEu5G@cluster0.sd7rodv.mongodb.net/simple-API-users?retryWrites=true&w=majority');
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
+connectDB.connect().then(()=>{
   app.listen(HTTP_PORT, ()=>{
       console.log("API listening on: " + HTTP_PORT);
   });
