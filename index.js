@@ -48,7 +48,8 @@ app.use(passport.initialize());
 app.use(cors());
 app.use(express.json());
 app.get("/api", (req, res) => {
-   res.json({ "message": "login successful"});
+   //res.json({ "message": "login successful"});
+  res.send('test')
 });
 
  app.listen(process.env.PORT || 3000)
