@@ -5,6 +5,13 @@
 //     res.send('Yo!')
 // })
 // app.listen(process.env.PORT || 3000)
+const express = require("express");
+const cors = require("cors");
+const userService = require("./user-services.js");
+const jwt = require('jsonwebtoken');
+const passport = require("passport");
+const passportJWT = require("passport-jwt");
+const app = express();
 const HTTP_PORT = process.env.PORT || 3000;
 
 // JSON Web Token Setup
