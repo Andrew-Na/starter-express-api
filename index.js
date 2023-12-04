@@ -59,4 +59,31 @@ app.get("/api", (req, res) => {
   res.send('test')
 });
 
- app.listen(process.env.PORT || 3000)
+app.post("/api/login", (req, res) => {
+  userService.checkUser(req.body)
+      .then((user) => {
+
+          let payload = { 
+              _id: user._id,
+              userName: user.userName,
+              fullName: user.fullName,
+              role: user.role
+          };
+          
+          let token = jwt.sign(payload, jwtOptions.secretOrKey);
+
+          res.json({ "message": "login successful", "token": token });
+      }).catch((msg) => {
+          res.status(422).json({ "message": msg });
+      });
+});
+
+app.use((req, res) => {
+  res.status(404).end();
+});
+
+userService.connect().then(()=>{
+  app.listen(HTTP_PORT, ()=>{
+      console.log("API listening on: " + HTTP_PORT);
+  });
+}).catch(err=>console.log(err))
