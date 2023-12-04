@@ -5,7 +5,7 @@
 //     res.send('Yo!')
 // })
 // app.listen(process.env.PORT || 3000)
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 3000;
 
 // JSON Web Token Setup
 let ExtractJwt = passportJWT.ExtractJwt;
